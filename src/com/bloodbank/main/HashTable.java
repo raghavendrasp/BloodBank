@@ -10,9 +10,6 @@ import java.util.Map;
 public class HashTable {
 	LinkedList<DonorProfile> profileList = new LinkedList<DonorProfile>();
 
-	public HashTable(LinkedList<DonorProfile> profileList) {
-		this.profileList = profileList;
-	}
 
 	public DonorProfile searchProfile(DonorProfile profile) {
 		for (DonorProfile profileData : profileList) {
