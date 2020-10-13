@@ -57,4 +57,7 @@ public class BloodDonor {
 	public void setDateDonated(Date dateDonated) {
 		this.dateDonated = dateDonated;
 	}
+	public String getFullName() {
+		return this.firstInitial.concat(this.lastName);
+	}
 }
