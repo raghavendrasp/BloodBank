@@ -9,7 +9,7 @@ import java.util.Date;
  * @author
  *
  */
-public class Profile {
+public class DonorProfile {
 	String firstName;
 	String lastName;
 	String bloodType;

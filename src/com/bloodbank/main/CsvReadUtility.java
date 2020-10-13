@@ -24,16 +24,16 @@ import java.util.List;
 public class CsvReadUtility {
 	private static final String COMMA_DELIMITER = ",";
 
-	public List<Profile> readCsvIntoList(String inputFile) throws FileNotFoundException {
+	public List<DonorProfile> readCsvIntoList(String inputFile) throws FileNotFoundException {
 		String line;
 		BufferedReader br = null;
-		List<Profile> profileList = null;
+		List<DonorProfile> profileList = null;
 		try {
 			br = new BufferedReader(new FileReader(inputFile));
-			profileList = new ArrayList<Profile>();
+			profileList = new ArrayList<DonorProfile>();
 			br.readLine(); // skip headers
 			while ((line = br.readLine()) != null) {
-				Profile profile = new Profile();
+				DonorProfile profile = new DonorProfile();
 				String[] values = line.split(COMMA_DELIMITER);
 				if (values.length != 5) {
 					throw new RuntimeException("Header Count Mismatch");
@@ -68,11 +68,11 @@ public class CsvReadUtility {
 		return profileList;
 	}
 
-	public void writeToCsv(List<Profile> profileList) {
+	public void writeToCsv(List<DonorProfile> profileList) {
 		try {
 			BufferedWriter bw = new BufferedWriter(
 					new OutputStreamWriter(new FileOutputStream("profile.csv"), "UTF-8"));
-			for (Profile profile : profileList) {
+			for (DonorProfile profile : profileList) {
 				StringBuffer oneLine = new StringBuffer();
 				oneLine.append(profile.getLastName());
 				oneLine.append(COMMA_DELIMITER);
