@@ -2,14 +2,18 @@ package com.bloodbank.main;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
-public class HashTable {
-	LinkedList<DonorProfile> profileList = new LinkedList<DonorProfile>();
+public class ArrayLists {
+	List<DonorProfile> profileList = new ArrayList<>() ;		
 
+	public ArrayLists(List<DonorProfile> profileList) {
+		this.profileList = profileList;
+	}
 
 	public DonorProfile searchProfile(DonorProfile profile) {
 		for (DonorProfile profileData : profileList) {
@@ -22,7 +26,7 @@ public class HashTable {
 	public void add(DonorProfile profile) {
 		if (searchProfile(profile) == null)
 		{
-			profileList.addLast(profile);
+			profileList.add(profile);
 		}
 
 	}
