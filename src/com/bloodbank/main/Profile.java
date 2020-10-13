@@ -55,5 +55,8 @@ public class Profile {
 	public void setDonatedDate(Date donatedDate) {
 		this.donatedDate = donatedDate;
 	}
-
+	
+	public String getFullName() {
+		return this.firstName.concat(this.lastName);
+	}
 }
