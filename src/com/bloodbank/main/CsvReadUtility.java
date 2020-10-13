@@ -93,4 +93,48 @@ public class CsvReadUtility {
 		} catch (IOException e) {
 		}
 	}
+	
+	public HashTable readCsvIntoHashTable(String inputFile) throws FileNotFoundException {
+		String line;
+		BufferedReader br = null;
+		HashTable hashTable = new HashTable();
+		try {
+			br = new BufferedReader(new FileReader(inputFile));
+			br.readLine(); // skip headers
+			while ((line = br.readLine()) != null) {
+				DonorProfile profile = new DonorProfile();
+				String[] values = line.split(COMMA_DELIMITER);
+				if (values.length != 5) {
+					throw new RuntimeException("Header Count Mismatch");
+				}
+				profile.setLastName(values[0]);
+				profile.setFirstName(values[1]);
+				profile.setBloodType(values[2]);
+				profile.setRh(values[3]);
+				if (values[4] != null && values[4] != "") {
+					Date donatedDate = new SimpleDateFormat("dd/MM/yyyy").parse(values[4]);
+					profile.setDonatedDate(donatedDate);
+				}
+				hashTable.add(profile);
+
+			}
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException("File not found");
+		} catch (IOException e) {
+			throw new RuntimeException("unable to read file");
+		} catch (RuntimeException e) {
+			throw e;
+		} catch (ParseException e) {
+			throw new RuntimeException("Unable to parse Date");
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					System.out.println("error while closing file " + e.getMessage());
+				}
+			}
+		}
+		return hashTable;
+	}
 }

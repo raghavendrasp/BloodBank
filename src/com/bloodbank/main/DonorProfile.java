@@ -59,4 +59,12 @@ public class DonorProfile {
 	public String getFullName() {
 		return this.firstName.concat(this.lastName);
 	}
+
+	@Override
+	public String toString() {
+		return "firstName=" + firstName + ", lastName=" + lastName + ", bloodType=" + bloodType + ", rh="
+				+ rh + ", donatedDate=" + donatedDate + "";
+	}
+	
+	
 }

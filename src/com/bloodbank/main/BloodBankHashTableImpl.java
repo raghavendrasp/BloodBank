@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * @author 
+ * @author
  *
  */
 public class BloodBankHashTableImpl {
@@ -19,14 +19,26 @@ public class BloodBankHashTableImpl {
 		System.out.println("Enter file path to read");
 		Scanner scan = new Scanner(System.in);
 		String fileName = scan.nextLine();
-		if (fileName == null) {
+		if (fileName != null) {
 			System.out.println("Enter valid filepath");
-		}
-		CsvReadUtility csvReadUtility = new CsvReadUtility();
-		try {
-			csvReadUtility.readCsvIntoList(fileName);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+
+			CsvReadUtility csvReadUtility = new CsvReadUtility();
+			try {
+				HashTable hashTable = csvReadUtility.readCsvIntoHashTable(fileName);
+				if(hashTable.profileList.isEmpty()) {
+					System.out.println("Empty File");
+				}else {
+					System.out.println("Enter option");
+					System.out.println("1. Remove old");
+					System.out.println("2. newest of type");
+					System.out.println("3. Count by Type");
+					System.out.println("4. print donor records");
+					System.out.println("5. add");
+				}
+
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
 		}
 
 	}
